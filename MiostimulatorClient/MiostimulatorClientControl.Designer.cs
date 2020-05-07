@@ -34,6 +34,7 @@
             // tbName
             // 
             this.tbName.Size = new System.Drawing.Size(75, 20);
+            this.tbName.Text = "Miostimulator Client";
             // 
             // btn_start_stop
             // 
@@ -48,6 +49,7 @@
             // MiostimulatorClientControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.ClientName = "Miostimulator Client";
             this.Controls.Add(this.btn_start_stop);
             this.Name = "MiostimulatorClientControl";
             this.Controls.SetChildIndex(this.lIP, 0);

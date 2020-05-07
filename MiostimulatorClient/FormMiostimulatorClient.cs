@@ -7,8 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Newtonsoft.Json;
+using NetManager;
 using NetManager.Client;
-using System.IO.Ports;
+using EEG;
 
 namespace MiostimulatorClient
 {
@@ -19,6 +21,19 @@ namespace MiostimulatorClient
             InitializeComponent();
             miostimulatorClientControl.Client.Reseive += Client_Reseive;
             miostimulatorClientControl.Client.Error += Client_Error;
+            stimulator = new NeuroMEP4CurrentStimulator();
+        }
+
+        public NeuroMEP4CurrentStimulator stimulator;
+
+        private void FormMiostimulatorClient_Load(object sender, EventArgs e)
+        {
+            stimulator.OpenStimulator();
+        }
+
+        private void FormMiostimulatorClient_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            stimulator.CloseStimulator();
         }
 
         private void Client_Error(object sender, NetManager.EventMsgArgs e)
@@ -28,8 +43,8 @@ namespace MiostimulatorClient
 
         private void Client_Reseive(object sender, NetManager.EventClientMsgArgs e)
         {
-            int n = BitConverter.ToInt32(e.Msg, 0);
-            if(n == 19)
+            int n = BitConverter.ToInt32(e.Msg, 4 * 0);
+            if (n == 19)
             {
                 n = (e.Msg.Length - 4) / 2;               
                 string s = "";
@@ -37,17 +52,26 @@ namespace MiostimulatorClient
                 {                    
                     s += BitConverter.ToChar(e.Msg, 4 + 2 * i);
                 }
-                Console.WriteLine(s);
-                //tb_commands.Text += s + "\n";
+                //s = tb_commands.Text + s + "\n";
+                //tb_commands.Text = s;
                 string[] str = s.Split(' ');
-                string period_of_stimulations = str[0];
-                string duration_of_the_stimulation = str[1];
-                string correction = str[2];
-                string amperage = str[3];
-                string count_of_stimulations = str[4];
-                string signal_shape = str[5];
-                WorkWithUSBT.SetData(period_of_stimulations, duration_of_the_stimulation, correction, amperage, count_of_stimulations, signal_shape);
-                WorkWithUSBT.StartButtonClick();
+                if (str[0] == "Start")
+                {
+                    stimulator.StartStimulation();
+                }
+                else if (str[0] == "Stop")
+                {
+                    stimulator.StopStimulation();
+                }
+                else if (str[0] == "SetParameters")
+                {
+                    stimulator = JsonConvert.DeserializeObject<NeuroMEP4CurrentStimulator>(str[1]);
+                }
+            }
+            else if (n == 17)
+            {
+                int correlation_command = BitConverter.ToInt32(e.Msg, 4 * 1);
+                stimulator.ChangeLevelStimulation(correlation_command);
             }
         }
     }

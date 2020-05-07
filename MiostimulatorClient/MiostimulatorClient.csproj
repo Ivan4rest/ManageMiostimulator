@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EEG, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Debug\EEG.dll</HintPath>
+    </Reference>
     <Reference Include="FoundationLibrary, Version=1.0.7241.40701, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\FoundationLibrary.dll</HintPath>
@@ -40,6 +44,10 @@
     <Reference Include="NetManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>bin\Debug\NetManager.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net20\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -66,10 +74,9 @@
     <Compile Include="MiostimulatorClientControl.Designer.cs">
       <DependentUpon>MiostimulatorClientControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="MouseEmulator.cs" />
+    <Compile Include="NeuroMEP4CurrentStimulator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WorkWithUSBT.cs" />
     <EmbeddedResource Include="FormMiostimulatorClient.resx">
       <DependentUpon>FormMiostimulatorClient.cs</DependentUpon>
     </EmbeddedResource>
