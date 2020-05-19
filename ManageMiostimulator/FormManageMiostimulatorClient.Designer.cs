@@ -30,6 +30,10 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormManageMiostimulatorClient));
             this.gb_input_data = new System.Windows.Forms.GroupBox();
+            this.btn_save_file = new System.Windows.Forms.Button();
+            this.btn_open_file = new System.Windows.Forms.Button();
+            this.label_amplitude_step = new System.Windows.Forms.Label();
+            this.tb_amplitude_step = new System.Windows.Forms.TextBox();
             this.btn_set_stimulation_parameters = new System.Windows.Forms.Button();
             this.btn_stop = new System.Windows.Forms.Button();
             this.cb_stimulation_form = new System.Windows.Forms.ComboBox();
@@ -46,10 +50,6 @@
             this.tb_duration_of_the_stimulation = new System.Windows.Forms.TextBox();
             this.tb_count_of_stimulations = new System.Windows.Forms.TextBox();
             this.tb_amperage = new System.Windows.Forms.TextBox();
-            this.tb_amplitude_step = new System.Windows.Forms.TextBox();
-            this.label_amplitude_step = new System.Windows.Forms.Label();
-            this.btn_open_file = new System.Windows.Forms.Button();
-            this.btn_save_file = new System.Windows.Forms.Button();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.saveFileDialog = new System.Windows.Forms.SaveFileDialog();
             this.manageMiostimulatorClientControl = new ManageMiostimulator.ManageMiostimulatorClientControl();
@@ -85,6 +85,42 @@
             this.gb_input_data.TabIndex = 1;
             this.gb_input_data.TabStop = false;
             this.gb_input_data.Text = "Формирование команды";
+            // 
+            // btn_save_file
+            // 
+            this.btn_save_file.Location = new System.Drawing.Point(6, 356);
+            this.btn_save_file.Name = "btn_save_file";
+            this.btn_save_file.Size = new System.Drawing.Size(187, 23);
+            this.btn_save_file.TabIndex = 18;
+            this.btn_save_file.Text = "Сохранить файл";
+            this.btn_save_file.UseVisualStyleBackColor = true;
+            this.btn_save_file.Click += new System.EventHandler(this.btn_save_file_Click);
+            // 
+            // btn_open_file
+            // 
+            this.btn_open_file.Location = new System.Drawing.Point(6, 327);
+            this.btn_open_file.Name = "btn_open_file";
+            this.btn_open_file.Size = new System.Drawing.Size(187, 23);
+            this.btn_open_file.TabIndex = 17;
+            this.btn_open_file.Text = "Открыть файл";
+            this.btn_open_file.UseVisualStyleBackColor = true;
+            this.btn_open_file.Click += new System.EventHandler(this.btn_open_file_Click);
+            // 
+            // label_amplitude_step
+            // 
+            this.label_amplitude_step.AutoSize = true;
+            this.label_amplitude_step.Location = new System.Drawing.Point(6, 251);
+            this.label_amplitude_step.Name = "label_amplitude_step";
+            this.label_amplitude_step.Size = new System.Drawing.Size(161, 13);
+            this.label_amplitude_step.TabIndex = 16;
+            this.label_amplitude_step.Text = "Шаг изменения амплитуды, А:";
+            // 
+            // tb_amplitude_step
+            // 
+            this.tb_amplitude_step.Location = new System.Drawing.Point(6, 267);
+            this.tb_amplitude_step.Name = "tb_amplitude_step";
+            this.tb_amplitude_step.Size = new System.Drawing.Size(374, 20);
+            this.tb_amplitude_step.TabIndex = 15;
             // 
             // btn_set_stimulation_parameters
             // 
@@ -152,9 +188,9 @@
             this.label_for_tb_signal_shape.AutoSize = true;
             this.label_for_tb_signal_shape.Location = new System.Drawing.Point(6, 211);
             this.label_for_tb_signal_shape.Name = "label_for_tb_signal_shape";
-            this.label_for_tb_signal_shape.Size = new System.Drawing.Size(91, 13);
+            this.label_for_tb_signal_shape.Size = new System.Drawing.Size(92, 13);
             this.label_for_tb_signal_shape.TabIndex = 10;
-            this.label_for_tb_signal_shape.Text = "Форма сигнала:";
+            this.label_for_tb_signal_shape.Text = "Форма стимула:";
             // 
             // label_for_tb_the_time_between_stimulation
             // 
@@ -228,42 +264,6 @@
             this.tb_amperage.Name = "tb_amperage";
             this.tb_amperage.Size = new System.Drawing.Size(374, 20);
             this.tb_amperage.TabIndex = 0;
-            // 
-            // tb_amplitude_step
-            // 
-            this.tb_amplitude_step.Location = new System.Drawing.Point(6, 267);
-            this.tb_amplitude_step.Name = "tb_amplitude_step";
-            this.tb_amplitude_step.Size = new System.Drawing.Size(374, 20);
-            this.tb_amplitude_step.TabIndex = 15;
-            // 
-            // label_amplitude_step
-            // 
-            this.label_amplitude_step.AutoSize = true;
-            this.label_amplitude_step.Location = new System.Drawing.Point(6, 251);
-            this.label_amplitude_step.Name = "label_amplitude_step";
-            this.label_amplitude_step.Size = new System.Drawing.Size(102, 13);
-            this.label_amplitude_step.TabIndex = 16;
-            this.label_amplitude_step.Text = "Шаг амплитуды, А:";
-            // 
-            // btn_open_file
-            // 
-            this.btn_open_file.Location = new System.Drawing.Point(6, 327);
-            this.btn_open_file.Name = "btn_open_file";
-            this.btn_open_file.Size = new System.Drawing.Size(187, 23);
-            this.btn_open_file.TabIndex = 17;
-            this.btn_open_file.Text = "Открыть файл";
-            this.btn_open_file.UseVisualStyleBackColor = true;
-            this.btn_open_file.Click += new System.EventHandler(this.btn_open_file_Click);
-            // 
-            // btn_save_file
-            // 
-            this.btn_save_file.Location = new System.Drawing.Point(6, 356);
-            this.btn_save_file.Name = "btn_save_file";
-            this.btn_save_file.Size = new System.Drawing.Size(187, 23);
-            this.btn_save_file.TabIndex = 18;
-            this.btn_save_file.Text = "Сохранить файл";
-            this.btn_save_file.UseVisualStyleBackColor = true;
-            this.btn_save_file.Click += new System.EventHandler(this.btn_save_file_Click);
             // 
             // openFileDialog
             // 
